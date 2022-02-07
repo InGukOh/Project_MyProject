@@ -10,5 +10,13 @@
         insert into MyProject_board(title, content, writer) values (#{title}, #{content}, #{writer})
         
     </insert>
+    
+     <!-- 게시판 목록 -->
+    <select id="getList" resultType="com.MyProject.model.BoardVO">
+    
+        select * from MyProject_board
+    
+    </select>
+    
  
   </mapper>

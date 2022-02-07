@@ -1,6 +1,8 @@
 package com.MyProject.mapper;
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,6 +22,7 @@ public class BoardMapperTests {
      @Autowired
      private BoardMapper mapper;
  
+//     게시판 입력 테스트 
      @Test
      public void testEnroll() {
          
@@ -30,6 +33,28 @@ public class BoardMapperTests {
          vo.setWriter("mapper test");
          
          mapper.enroll(vo);
+         
+     }
+     
+     
+//     게시판 리스트 테스트
+    @Test
+     public void testGetList() {
+         
+         
+         List list = mapper.getList();
+        // 일반적 for문
+         for(int i = 0; i < list.size();i++) {
+             log.info("" + list.get(i));
+         }
+         
+      // foreach문(향상된 for문)
+         for(Object a : list) {
+             log.info("" + a);
+         }
+         
+      //  foreach문 & 람다식
+         list.forEach(board -> log.info("" + board));
          
      }
      
