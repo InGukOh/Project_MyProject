@@ -31,7 +31,7 @@ public class BoardServiceTests {
         
         service.enroll(vo);
         
-    }*/
+    }
     
     
     //게시판 목록 테스트
@@ -41,5 +41,14 @@ public class BoardServiceTests {
         service.getList().forEach(board -> log.info("" + board));        
         
     }
- 
+    */
+    // 게시판 조회
+    @Test
+    public void testGETPage() {
+        
+        int bno = 8;
+        
+        log.info("" + service.getPage(bno));
+        
+    }
 }

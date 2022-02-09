@@ -21,7 +21,7 @@ public class BoardMapperTests {
      
      @Autowired
      private BoardMapper mapper;
- 
+ /*
 //     게시판 입력 테스트 
      @Test
      public void testEnroll() {
@@ -57,6 +57,17 @@ public class BoardMapperTests {
          list.forEach(board -> log.info("" + board));
          
      }
+    */
+    //  조회 
+    @Test
+   public void testGetPage() {
+       
+       /* 실제 존재하는 페이지 */
+       int num = 8;
+       
+       log.info("" + mapper.getPage(num));
+       
+   }
      
  
 }
