@@ -31,7 +31,7 @@
   .table_wrap{
   	margin : 50px 0 0 50px;
   }
-  .bno_width{
+  .num_width{
   	width: 12%;
   }
   .writer_width{
@@ -66,7 +66,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th class="bno_width">번호</th>
+				<th class="num_width">번호</th>
 				<th class="title_width">제목</th>
 				<th class="writer_width">작성자</th>
 				<th class="regdate_width">작성일</th>
@@ -75,7 +75,11 @@
 		</thead>
 		<c:forEach items="${list}" var="list">
             <tr>
-                <td><c:out value="${list.num}"/></td>
+                <td>
+                	<a class="move" href='<c:out value="${list.num}"/>'>
+                        <c:out value="${list.title}"/>
+                    </a>
+                </td>
                 <td><c:out value="${list.title}"/></td>
                 <td><c:out value="${list.writer}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}"/></td>
@@ -83,6 +87,8 @@
             </tr>
         </c:forEach>
 	</table>
+	<form id="moveForm" method="get">    
+    </form>
 </div>
 
 
@@ -106,6 +112,17 @@
         }    
  
     });
+    
+    let moveForm = $("#moveForm");
+    
+    $(".move").on("click", function(e){
+        e.preventDefault();
+        moveForm.append("<input type='hidden' name='num' value='"+ $(this).attr("href")+ "'>");
+        moveForm.attr("action", "/board/get");
+        moveForm.submit();
+    });
+ 
+
  
 </script>
 </body>
