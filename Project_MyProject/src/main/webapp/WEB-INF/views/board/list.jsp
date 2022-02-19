@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,12 +76,12 @@
 		</thead>
 		<c:forEach items="${list}" var="list">
             <tr>
+            	<td><c:out value="${list.num}"/></td>
                 <td>
                 	<a class="move" href='<c:out value="${list.num}"/>'>
                         <c:out value="${list.title}"/>
                     </a>
                 </td>
-                <td><c:out value="${list.title}"/></td>
                 <td><c:out value="${list.writer}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
@@ -107,6 +108,10 @@
             
             if(result === "enrol success"){
                 alert("등록이 완료되었습니다.");
+            }
+            
+            if(result === "modify success"){
+                alert("수정이 완료되었습니다.");
             }
             
         }    

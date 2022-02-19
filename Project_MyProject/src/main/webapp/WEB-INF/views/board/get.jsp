@@ -53,6 +53,7 @@ textarea{
 </head>
 <body>
 <h1>조회 페이지</h1>
+
 	<div class="input_wrap">
 		<label>게시판 번호</label>
 		<input name="num" readonly="readonly" value='<c:out value="${pageInfo.num}"/>' >
@@ -63,7 +64,7 @@ textarea{
 	</div>
 	<div class="input_wrap">
 		<label>게시판 내용</label>
-		<textarea rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.content}"/></textarea>
+		<textarea rows="3" name="content" readonly="readonly" ><c:out value="${pageInfo.content}"/></textarea>
 	</div>
 	<div class="input_wrap">
 		<label>게시판 작성자</label>
@@ -83,7 +84,9 @@ textarea{
 	</div>
 	<form id="infoForm" action="/board/modify" method="get">
 		<input type="hidden" id="num" name="num" value='<c:out value="${pageInfo.num}"/>'>
+<p><c:out value="${pageInfo.num}"/></p>
 	</form>
+	
 <script>
 	let form = $("#infoForm");
 	
@@ -98,5 +101,6 @@ textarea{
 		form.submit();
 	});	
 </script>	
+
 </body>
 </html>

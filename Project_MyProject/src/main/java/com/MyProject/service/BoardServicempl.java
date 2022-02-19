@@ -26,8 +26,14 @@ public class BoardServicempl  implements BoardService{
     }
 	// 글 조회 
     @Override
-    public BoardVO getPage(int bno) {
+    public BoardVO getPage(int num) {
          
-        return mapper.getPage(bno);
-    }   
+        return mapper.getPage(num);
+    }
+    // 글 수정
+    @Override
+    public int modify(BoardVO board) {
+        
+        return mapper.modify(board);
+    }
 }

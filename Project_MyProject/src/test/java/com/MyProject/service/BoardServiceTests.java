@@ -34,21 +34,36 @@ public class BoardServiceTests {
     }
     
     
-    //게시판 목록 테스트
+    // 글 목록 테스트
     @Test
     public void testGetList() {
         
         service.getList().forEach(board -> log.info("" + board));        
         
     }
-    */
-    // 게시판 조회
+    
+    // 글 조회
     @Test
     public void testGETPage() {
         
-        int bno = 8;
+        int num = 8;
         
-        log.info("" + service.getPage(bno));
+        log.info("" + service.getPage(num));
         
     }
+    */
+    
+    // 글 수정
+    @Test
+    public void testModify() {
+        
+        BoardVO board = new BoardVO();
+        board.setNum(8);
+        board.setTitle("수정 제목");
+        board.setContent("수정 내용");
+        
+        int result = service.modify(board);
+        log.info("result : " +result);
+        
+    } 
 }

@@ -22,13 +22,13 @@ public class BoardController {
 	@Autowired
 	private BoardService bservice;
 	
-	/* 게시판 목록 페이지 접속 */
+	/* 글 목록 페이지 접속 */
     @GetMapping("/list")
     // => @RequestMapping(value="list", method=RequestMethod.GET)
     public void boardListGET(Model model) {
         
-        log.info("게시판 목록 페이지 진입");
-        
+        log.info("글 목록 페이지 진입");
+
         model.addAttribute("list", bservice.getList());
         
     }
@@ -37,11 +37,11 @@ public class BoardController {
 	// => @RequestMapping(value="enroll", method=RequestMethod.GET)
 	public void boardEnrollGET() {
 		
-		log.info("게시판 등록 페이지 진입");
+		log.info("글 등록 페이지 진입");
 		
 	}
 	 
-	   /* 게시판 등록 */
+	   /* 글 등록 */
 	@PostMapping("/enroll")
 	public String boardEnrollPOST(BoardVO board, RedirectAttributes rttr) {
 	        
@@ -54,11 +54,30 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	/* 게시판 조회 */
+	/* 글 조회 */
     @GetMapping("/get")
     public void boardGetPageGET(int num, Model model) {
         
         model.addAttribute("pageInfo", bservice.getPage(num));
+        
+    }
+    
+    /* 글 수정 페이지 이동 */
+    @GetMapping("/modify")
+    public void boardModifyGET(int num, Model model) {
+        
+        model.addAttribute("pageInfo", bservice.getPage(num));
+        
+    }
+    /* 페이지 내용 수정 */
+    @PostMapping("/modify")
+    public String boardModifyPOST(BoardVO board, RedirectAttributes rttr) {
+        
+        bservice.modify(board);
+        
+        rttr.addFlashAttribute("result", "modify success");
+        
+        return "redirect:/board/list";
         
     }
 	

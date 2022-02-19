@@ -25,5 +25,11 @@
     
     </select>
     
+    <!-- 글 수정 -->
+    <update id="modify">
+        
+        update MyProject_board set title = #{title}, content = #{content}, updatedate = now() where num = #{num}
+    
+    </update>
  
   </mapper>
