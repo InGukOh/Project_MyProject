@@ -54,16 +54,23 @@ public class BoardServiceTests {
     */
     
     // 글 수정
+	/*
+	 * @Test public void testModify() {
+	 * 
+	 * BoardVO board = new BoardVO(); board.setNum(8); board.setTitle("수정 제목");
+	 * board.setContent("수정 내용");
+	 * 
+	 * int result = service.modify(board); log.info("result : " +result);
+	 * 
+	 * }
+	 */
+    
+    // 글 삭제
     @Test
-    public void testModify() {
+    public void testDelete() {
         
-        BoardVO board = new BoardVO();
-        board.setNum(8);
-        board.setTitle("수정 제목");
-        board.setContent("수정 내용");
+        int result = service.setAppear(3);
+        log.info("result : " + result);
         
-        int result = service.modify(board);
-        log.info("result : " +result);
-        
-    } 
+    }
 }

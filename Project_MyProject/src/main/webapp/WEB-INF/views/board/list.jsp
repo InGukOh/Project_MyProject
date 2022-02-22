@@ -74,8 +74,11 @@
 				<th class="updatedate_width">수정일</th>
 			</tr>
 		</thead>
-		<c:forEach items="${list}" var="list">
-            <tr>
+		
+		
+    		<c:forEach items="${list}" var="list">
+    		<c:if test="${list.appear eq 1}">
+		     <tr>
             	<td><c:out value="${list.num}"/></td>
                 <td>
                 	<a class="move" href='<c:out value="${list.num}"/>'>
@@ -86,7 +89,10 @@
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
             </tr>
+            </c:if>
         </c:forEach>
+		
+		
 	</table>
 	<form id="moveForm" method="get">    
     </form>
@@ -114,6 +120,9 @@
                 alert("수정이 완료되었습니다.");
             }
             
+            if(result === "delete success"){
+                alert("삭제가 완료되었습니다.");
+            }
         }    
  
     });
@@ -122,6 +131,9 @@
     
     $(".move").on("click", function(e){
         e.preventDefault();
+        alert($(this).attr("href"));
+        alert("<input type='hidden' name='num' value='"+ $(this).attr("href")+ "'>");
+        moveForm.empty();
         moveForm.append("<input type='hidden' name='num' value='"+ $(this).attr("href")+ "'>");
         moveForm.attr("action", "/board/get");
         moveForm.submit();

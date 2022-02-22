@@ -60,6 +60,7 @@ public class BoardController {
         
         model.addAttribute("pageInfo", bservice.getPage(num));
         
+        log.info("글 조회 : "+num+" 페이지 진입");
     }
     
     /* 글 수정 페이지 이동 */
@@ -79,6 +80,16 @@ public class BoardController {
         
         return "redirect:/board/list";
         
+    }
+    /* 페이지 삭제 */
+    @PostMapping("/setAppear")
+    public String boardDeletePOST(int num, RedirectAttributes rttr) {
+        
+        bservice.setAppear(num);
+        
+        rttr.addFlashAttribute("result", "delete success");
+        
+        return "redirect:/board/list";
     }
 	
 }

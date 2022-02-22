@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class BoardVO {
 
-    /* 게시판 번호 */
+    /* 글 번호 */
     private int num;
     
-    /* 게시판 제목 */
+    /* 글 제목 */
     private String title;
     
-    /* 게시판 내용 */
+    /* 글 내용 */
     private String content;
     
-    /* 게시판 작가 */
+    /* 글 작성자 */
     private String writer;
     
     /* 등록 날짜 */
@@ -21,6 +21,9 @@ public class BoardVO {
     
     /* 수정 날짜 */
     private Date updateDate;
+    
+    /* 글 보이기 (0 = 안보임)*/
+    private int appear;
 
 	public int getNum() {
 		return num;
@@ -69,11 +72,19 @@ public class BoardVO {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public int getAppear() {
+		return appear;
+	}
+
+	public void setAppear(int appear) {
+		this.appear = appear;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardVO [num=" + num + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", updateDate=" + updateDate + "]";
+				+ regdate + ", updateDate=" + updateDate + ", appear=" + appear + "]";
 	}
     
     

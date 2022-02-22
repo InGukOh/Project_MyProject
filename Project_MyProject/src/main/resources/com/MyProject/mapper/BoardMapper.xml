@@ -7,7 +7,7 @@
  	<!-- 글 작성 -->
     <insert id="enroll">
         
-        insert into MyProject_board(title, content, writer) values (#{title}, #{content}, #{writer})
+        insert into MyProject_board(title, content, writer, appear) values (#{title}, #{content}, #{writer}, 1)
         
     </insert>
     
@@ -31,5 +31,13 @@
         update MyProject_board set title = #{title}, content = #{content}, updatedate = now() where num = #{num}
     
     </update>
+    
+    <!-- 글 삭제 -->
+    <update id="setAppear">
+    
+        update MyProject_board set appear = 0 where num = #{num}
+    
+    </update>
+    
  
   </mapper>

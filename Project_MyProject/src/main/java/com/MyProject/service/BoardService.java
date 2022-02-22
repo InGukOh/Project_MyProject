@@ -13,4 +13,6 @@ public interface BoardService {
 	public BoardVO getPage(int num);
 	//글 수정
     public int modify(BoardVO board);
+    //글 삭제 (사용자 글 안보이게)
+  	public int setAppear(int num);
 }

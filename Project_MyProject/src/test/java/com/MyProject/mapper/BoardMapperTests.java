@@ -21,7 +21,7 @@ public class BoardMapperTests {
 	@Autowired
 	private BoardMapper mapper;
 	/*
-	 * // 게시판 입력 테스트
+	 * // 글 입력 테스트
 	 * 
 	 * @Test public void testEnroll() {
 	 * 
@@ -35,7 +35,7 @@ public class BoardMapperTests {
 	 * }
 	 * 
 	 * 
-	 * // 게시판 리스트 테스트
+	 * // 글 리스트 테스트
 	 * 
 	 * @Test public void testGetList() {
 	 * 
@@ -59,18 +59,25 @@ public class BoardMapperTests {
 	 * 
 	 * }
 	 */
-	/* 게시판 수정 */
+	/* 글 수정 테스트*/
+	/*
+	 * @Test public void testModify() {
+	 * 
+	 * BoardVO board = new BoardVO(); board.setNum(99); board.setTitle("수정 제목");
+	 * board.setContent("수정 내용");
+	 * 
+	 * int result = mapper.modify(board); log.info("result : " +result);
+	 * 
+	 * }
+	 */
+	/* 글 삭제 테스트 */
     @Test
-    public void testModify() {
+    public void testDelete() {
         
-        BoardVO board = new BoardVO();
-        board.setNum(99);
-        board.setTitle("수정 제목");
-        board.setContent("수정 내용");
-        
-        int result = mapper.modify(board);
-        log.info("result : " +result);
+        int result = mapper.setAppear(3);
+        log.info("result : " + result);
         
     }
+	
 
 }
