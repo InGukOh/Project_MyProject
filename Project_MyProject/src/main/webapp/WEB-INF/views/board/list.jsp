@@ -105,7 +105,7 @@
     	
     	let result = '<c:out value="${result}"/>';	
     	checkAlert(result);
-        
+         
         function checkAlert(result){
             
             if(result === ''){

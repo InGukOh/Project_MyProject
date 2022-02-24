@@ -38,7 +38,7 @@
         update MyProject_board set appear = 0 where num = #{num}
     
     </update>
-    
+     
     <!-- 페이징된 글 목록 -->
     <select id="getListPaging" resultType="com.MyProject.model.BoardVO">
     
