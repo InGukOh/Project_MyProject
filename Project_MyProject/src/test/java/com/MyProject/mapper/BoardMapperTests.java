@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.MyProject.model.BoardVO;
+import com.MyProject.model.Criterion;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -71,13 +72,26 @@ public class BoardMapperTests {
 	 * }
 	 */
 	/* 글 삭제 테스트 */
-    @Test
-    public void testDelete() {
-        
-        int result = mapper.setAppear(3);
-        log.info("result : " + result);
-        
-    }
+	/*
+	 * @Test public void testDelete() {
+	 * 
+	 * int result = mapper.setAppear(3); log.info("result : " + result);
+	 * 
+	 * }
+	 */
 	
+	/* 목록 페이징 적용 테스트 */
+	
+	 @Test
+     public void testGetListPaging() {
+         
+         Criterion cri = new Criterion();
+         
+         cri.setPageNum(2);
+                          
+         List list = mapper.getListPaging(cri);
+         
+         list.forEach(board -> log.info("" + board));
+     }
 
 }

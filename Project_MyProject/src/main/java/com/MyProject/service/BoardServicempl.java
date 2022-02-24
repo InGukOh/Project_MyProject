@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.MyProject.mapper.BoardMapper;
 import com.MyProject.model.BoardVO;
+import com.MyProject.model.Criterion;
 
 @Service
 public class BoardServicempl  implements BoardService{
@@ -41,10 +42,17 @@ public class BoardServicempl  implements BoardService{
         return mapper.modify(board);
     }
     
-    // 글 안보이게(사용자 글 삭제)
+    //글 삭제 (사용자 글 안보이게)
     @Override
     public int setAppear(int num) {
         
         return mapper.setAppear(num);
     }
+    
+    //페이징 적용된 글 목록
+    @Override
+    public List<BoardVO> getListPaging(Criterion cri) {
+        
+        return mapper.getListPaging(cri);
+    }  
 }

@@ -77,7 +77,7 @@
 		
 		
     		<c:forEach items="${list}" var="list">
-    		<c:if test="${list.appear eq 1}">
+    		<%-- <c:if test="${list.appear eq 1}"> --%>
 		     <tr>
             	<td><c:out value="${list.num}"/></td>
                 <td>
@@ -89,7 +89,7 @@
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
             </tr>
-            </c:if>
+            <%-- </c:if> --%>
         </c:forEach>
 		
 		

@@ -39,5 +39,20 @@
     
     </update>
     
+    <!-- 페이징된 글 목록 -->
+    <select id="getListPaging" resultType="com.MyProject.model.BoardVO">
+    
+        select * from (
+        select 
+        num, title, writer, regdate, updatedate 
+        from MyProject_board 
+        where appear = 1
+        order by num desc
+        ) as T1 
+        limit #{skip},#{ListCount}
+        <!-- 보기활성화된것만 불러옴 -->
+    	<!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+    </select>
+    
  
   </mapper>
