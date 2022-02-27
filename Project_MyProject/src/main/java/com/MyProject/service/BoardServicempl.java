@@ -55,4 +55,12 @@ public class BoardServicempl  implements BoardService{
         
         return mapper.getListPaging(cri);
     }  
+    
+    // 글 총 갯수 (appear = 1)
+    @Override
+    public int getTotal() {
+        
+        return mapper.getTotal();
+    } 
+    
 }

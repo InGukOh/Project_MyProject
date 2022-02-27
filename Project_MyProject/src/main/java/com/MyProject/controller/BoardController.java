@@ -1,5 +1,7 @@
 package com.MyProject.controller;
 
+import java.awt.print.Pageable;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.MyProject.model.BoardVO;
 import com.MyProject.model.Criterion;
+import com.MyProject.model.PageMakerDTO;
 import com.MyProject.service.BoardService;
 @Controller
 @RequestMapping("/board/*")
@@ -31,6 +34,12 @@ public class BoardController {
         log.info("글 목록 페이지 진입");
 
         model.addAttribute("list", bservice.getListPaging(cri));
+        
+        int total = bservice.getTotal();
+        
+        PageMakerDTO pageMaker = new PageMakerDTO(cri, total);
+        
+        model.addAttribute("pageMaker", pageMaker);
         
     }
 	 
@@ -57,18 +66,22 @@ public class BoardController {
 	
 	/* 글 조회 */
     @GetMapping("/get")
-    public void boardGetPageGET(int num, Model model) {
+    public void boardGetPageGET(int num, Model model, Criterion cri) {
         
         model.addAttribute("pageInfo", bservice.getPage(num));
+        
+        model.addAttribute("cri", cri);
         
         log.info("글 조회 : "+num+" 페이지 진입");
     }
     
     /* 글 수정 페이지 이동 */
     @GetMapping("/modify")
-    public void boardModifyGET(int num, Model model) {
+    public void boardModifyGET(int num, Model model,Criterion cri) {
         
         model.addAttribute("pageInfo", bservice.getPage(num));
+        
+        model.addAttribute("cri",cri);
         
     }
     /* 페이지 내용 수정 */

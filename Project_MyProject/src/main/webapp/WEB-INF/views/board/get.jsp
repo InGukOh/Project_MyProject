@@ -82,9 +82,11 @@ textarea{
 		<a class="btn" id="list_btn">목록 페이지</a> 
 		<a class="btn" id="modify_btn">수정 하기</a>
 	</div>
+	
 	<form id="infoForm" action="/board/modify" method="get">
 		<input type="hidden" id="num" name="num" value='<c:out value="${pageInfo.num}"/>'>
-<p><c:out value="${pageInfo.num}"/></p>
+		<input type="hidden" name="pageNum" value='<c:out value ="${cri.pageNum}"/>'>
+		<input type="hidden" name="ListCount" value='<c:out value ="${cri.listCount}"/>'>
 	</form>
 	
 <script>

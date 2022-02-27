@@ -20,4 +20,6 @@ public interface BoardService {
     public int modify(BoardVO board);
     //글 삭제 (사용자 글 안보이게)
   	public int setAppear(int num);
+	// 글 총 갯수 (appear = 1)
+    public int getTotal();
 }

@@ -51,8 +51,14 @@
         ) as T1 
         limit #{skip},#{ListCount}
         <!-- 보기활성화된것만 불러옴 -->
-    	<!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+    	<!-- limit ((${pageNum}-1)*${ListCount}), ${ListCount} -->
     </select>
     
+    <!-- 글 총 개숫 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from MyProject_board
+    
+    </select>
  
   </mapper>
