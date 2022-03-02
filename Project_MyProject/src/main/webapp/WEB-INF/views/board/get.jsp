@@ -85,8 +85,9 @@ textarea{
 	
 	<form id="infoForm" action="/board/modify" method="get">
 		<input type="hidden" id="num" name="num" value='<c:out value="${pageInfo.num}"/>'>
-		<input type="hidden" name="pageNum" value='<c:out value ="${cri.pageNum}"/>'>
+		<input type="hidden" name="PageNum" value='<c:out value ="${cri.pageNum}"/>'>
 		<input type="hidden" name="ListCount" value='<c:out value ="${cri.listCount}"/>'>
+		<input type="hidden" name="KeyWord" value="${cri.keyWord }"> 
 	</form>
 	
 <script>

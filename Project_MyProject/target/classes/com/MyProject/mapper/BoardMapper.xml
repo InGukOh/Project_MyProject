@@ -43,22 +43,24 @@
     <select id="getListPaging" resultType="com.MyProject.model.BoardVO">
     
         select * from (
-        select 
-        num, title, writer, regdate, updatedate 
-        from MyProject_board 
-        where appear = 1
-        order by num desc
-        ) as T1 
+                select num, title, writer, regdate, updatedate  
+                from MyProject_board 
+                <if test="keyWord != null">
+                    where title like concat('%',#{keyWord},'%' )
+                </if>
+                order by num desc) as T1
         limit #{skip},#{ListCount}
-        <!-- 보기활성화된것만 불러옴 -->
-    	<!-- limit ((${pageNum}-1)*${ListCount}), ${ListCount} -->
-    </select>
-    
-    <!-- 글 총 개숫 -->
-    <select id="getTotal" resultType="int">
-    
-        select count(*) from MyProject_board
     
     </select>
+    
+    <!-- 검색된 글 갯수 -->
+   	<select id="getTotal" resultType="int">
+    
+        select count(*) from MyProject_board   
+        <if test="keyWord != null">
+            where title like concat('%',#{keyWord},'%')
+        </if>
+    
+   	 </select>
  
   </mapper>

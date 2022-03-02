@@ -58,9 +58,9 @@ public class BoardServicempl  implements BoardService{
     
     // 글 총 갯수 (appear = 1)
     @Override
-    public int getTotal() {
+    public int getTotal(Criterion cri) {
         
-        return mapper.getTotal();
+        return mapper.getTotal(cri);
     } 
     
 }

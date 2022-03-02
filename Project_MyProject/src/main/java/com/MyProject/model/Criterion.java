@@ -8,6 +8,9 @@ public class Criterion {
     /* 한 페이지 당 보여질 게시물 갯수 */
     private int ListCount;
     
+    /* 검색어 입력*/
+    private String KeyWord;
+    
     /* 스킵 할 게시물 수( (pageNum-1) * ListCount ) */
     private int skip;
     
@@ -54,6 +57,14 @@ public class Criterion {
 		ListCount = listCount;
 	}
 
+	public String getKeyWord() {
+		return KeyWord;
+	}
+
+	public void setKeyWord(String keyWord) {
+		this.KeyWord = keyWord;
+	}
+
 	public int getSkip() {
 		return skip;
 	}
@@ -64,8 +75,15 @@ public class Criterion {
 
 	@Override
 	public String toString() {
-		return "Criterion [pageNum=" + pageNum + ", ListCount=" + ListCount + ", skip=" + skip + "]";
+		return "Criterion [pageNum=" + pageNum + ", ListCount=" + ListCount + ", KeyWord=" + KeyWord + ", skip=" + skip
+				+ "]";
 	}
+
+	
+	
+	
+
+	
     
 
 }

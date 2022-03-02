@@ -72,6 +72,20 @@
       background-color: #cdd5ec;
   }
   
+  .search_area{
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 260px;
+  }
+  .search_area input{
+      height: 30px;
+    width: 250px;
+  }
+  .search_area button{
+     width: 100px;
+    height: 36px;
+  }
+  
   </style>
 </head>
 
@@ -115,24 +129,31 @@
 	
 	</table>
 	
+	<div class="search_wrap">
+        <div class="search_area">
+            <input type="text" name="KeyWord" value="${pageMaker.cri.keyWord }">
+            <button>Search</button>
+        </div>
+    </div>
+	
 	<div class="pageInfo_wrap" >
         <div class="pageInfo_area">
         	<ul id="pageInfo" class="pageInfo">
         	
         		<!-- 이전페이지 -->
                 <c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">&lt;&lt;</a></li>
                 </c:if>
                 
                 <!-- 페이지 목록 -->
         		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                    <li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }">${num}</a></li>
+                    <li class="pageInfo_btn"> <a href="${num}">${num}</a></li>
                 	
                 </c:forEach>
                 
                 <!-- 다음페이지 -->
                 <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">&gt;&gt;</a></li>
                 </c:if> 
                 
         	</ul>
@@ -140,8 +161,9 @@
     </div>
     
 	<form id="moveForm" method="get">
-		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="PageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="ListCount" value="${pageMaker.cri.listCount}">
+		<input type="hidden" name="KeyWord" value="${pageMaker.cri.keyWord }">
     </form>
 </div>
 
@@ -188,10 +210,18 @@
 	$(".pageInfo a").on("click", function(e){
 		
 		e.preventDefault();
-		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		moveForm.find("input[name='PageNum']").val($(this).attr("href"));
 		moveForm.attr("action", "/board/list");
 		moveForm.submit();
         
+    });
+    
+	$(".search_area button").on("click", function(e){
+        e.preventDefault();
+        let val = $("input[name='KeyWord']").val();
+        moveForm.find("input[name='KeyWord']").val(val);
+        moveForm.find("input[name='PageNum']").val(1);
+        moveForm.submit();
     });
 
  
