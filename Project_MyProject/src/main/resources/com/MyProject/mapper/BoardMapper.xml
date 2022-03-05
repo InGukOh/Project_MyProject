@@ -42,18 +42,18 @@
     <!-- 페이징된 글 목록 -->
     <select id="getListPaging" resultType="com.MyProject.model.BoardVO">
     
-        select * from (
+		select * from (
                 select num, title, writer, regdate, updatedate  
                 from MyProject_board 
                 <if test="keyWord != null">
-                    where title like concat('%',#{keyWord},'%' )
+                    <include refid="criterion"></include>
                 </if>
-                order by num desc) as T1
-        limit #{skip},#{ListCount}
+                 order by num desc) as T1
+        limit #{skip},#{listCount}
     
     </select>
     
-    <!-- 검색된 글 갯수 -->
+    <!-- 검색된 글 갯수
    	<select id="getTotal" resultType="int">
     
         select count(*) from MyProject_board   
@@ -61,6 +61,42 @@
             where title like concat('%',#{keyWord},'%')
         </if>
     
-   	 </select>
+   	 </select>-->
+   	 
+   	 <!-- 게시물 총 갯수 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from MyProject_board
+        
+        <if test="keyWord != null">
+            <include refid="criterion"></include>
+        </if>    
+    
+    </select> 
+   	 
+   	 <!-- 검색 조건문 -->
+    <sql id="criterion">
+        <trim prefix="where (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like concat('%',#{keyWord},'%') and appear = 1
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like concat('%',#{keyWord},'%') and appear = 1
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like concat('%',#{keyWord},'%' ) and appear = 1
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
+ 
+ 
+     
  
   </mapper>

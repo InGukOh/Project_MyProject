@@ -1,5 +1,7 @@
 package com.MyProject.model;
 
+import java.util.Arrays;
+
 public class Criterion {
 	
 	/* 현재 페이지 */
@@ -13,6 +15,12 @@ public class Criterion {
     
     /* 스킵 할 게시물 수( (pageNum-1) * ListCount ) */
     private int skip;
+    
+    /* 검색 타입 */
+    private String type;
+    
+    /* 검색 타입 배열 */
+    private String[] typeArr;
     
     /* 기본 생성자 -> 기봅 세팅 : pageNum = 1, ListCount = 10 */
     public Criterion() {
@@ -72,12 +80,31 @@ public class Criterion {
 	public void setSkip(int skip) {
 		this.skip = skip;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+		this.typeArr = type.split("");
+	}
+
+	public String[] getTypeArr() {
+		return typeArr;
+	}
+
+	public void setTypeArr(String[] typeArr) {
+		this.typeArr = typeArr;
+	}
 
 	@Override
 	public String toString() {
 		return "Criterion [pageNum=" + pageNum + ", ListCount=" + ListCount + ", KeyWord=" + KeyWord + ", skip=" + skip
-				+ "]";
+				+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
 	}
+
+	
 
 	
 	

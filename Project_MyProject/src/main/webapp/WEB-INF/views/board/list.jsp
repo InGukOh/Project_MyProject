@@ -52,12 +52,12 @@
     font-weight: 600;
   }
     .pageInfo{
-      list-style : none;
-      display: inline-block;
+	list-style : none;
+	display: inline-block;
     margin: 50px 0 0 100px;      
   }
   .pageInfo li{
-      float: left;
+	float: left;
     font-size: 20px;
     margin-left: 18px;
     padding: 7px;
@@ -69,7 +69,7 @@
  a:hover {color:black; text-decoration: underline;}
  
   .active{
-      background-color: #cdd5ec;
+	background-color: #cdd5ec;
   }
   
   .search_area{
@@ -78,12 +78,15 @@
     margin-left: 260px;
   }
   .search_area input{
-      height: 30px;
+	height: 30px;
     width: 250px;
   }
   .search_area button{
-     width: 100px;
+	width: 100px;
     height: 36px;
+  }
+  .search_area select {
+  	height: 35px;
   }
   
   </style>
@@ -131,6 +134,17 @@
 	
 	<div class="search_wrap">
         <div class="search_area">
+        
+        	<select name="type">
+                <option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
+                <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
+                <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
+                <option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }"/>>작성자</option>
+                <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }"/>>제목 + 내용</option>
+                <option value="TW" <c:out value="${pageMaker.cri.type eq 'TW'?'selected':'' }"/>>제목 + 작성자</option>
+                <option value="TCW" <c:out value="${pageMaker.cri.type eq 'TCW'?'selected':'' }"/>>제목 + 내용 + 작성자</option>
+            </select>
+            
             <input type="text" name="KeyWord" value="${pageMaker.cri.keyWord }">
             <button>Search</button>
         </div>
@@ -164,6 +178,7 @@
 		<input type="hidden" name="PageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="ListCount" value="${pageMaker.cri.listCount}">
 		<input type="hidden" name="KeyWord" value="${pageMaker.cri.keyWord }">
+    	<input type="hidden" name="Type" value="${pageMaker.cri.type }">
     </form>
 </div>
 
@@ -218,11 +233,27 @@
     
 	$(".search_area button").on("click", function(e){
         e.preventDefault();
-        let val = $("input[name='KeyWord']").val();
-        moveForm.find("input[name='KeyWord']").val(val);
+        
+        let type = $(".search_area select").val();
+        let keyWord = $(".search_area input[name='KeyWord']").val();
+        
+        if(!type){
+            alert("검색 종류를 선택하세요.");
+            return false;
+        }
+        
+        if(!keyWord){
+            alert("키워드를 입력하세요.");
+            return false;
+        }        
+        
+        moveForm.find("input[name='Type']").val(type);
+        moveForm.find("input[name='KeyWord']").val(keyWord);
         moveForm.find("input[name='PageNum']").val(1);
         moveForm.submit();
     });
+    
+
 
  
 </script>
