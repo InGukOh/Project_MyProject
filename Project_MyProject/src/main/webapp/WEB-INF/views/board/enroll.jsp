@@ -32,7 +32,7 @@
 	    <button>등록</button>
 	    
 	</form>
-	<button class="btn-pageback" onclick="history.back()">뒤로가기</button>
+	<button class="btn-pageback" onclick="history.back()">글쓰기 취소</button>
 </div>
 
 </body>
