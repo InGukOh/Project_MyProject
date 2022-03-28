@@ -99,6 +99,8 @@
 </script>
   
 <body>
+
+<p>${serverTime}</p>
 <h1>목록페이지입니다.</h1>
 <div class="table_wrap">
 	<a href="/board/enroll" class="top_btn">게시판 등록</a>

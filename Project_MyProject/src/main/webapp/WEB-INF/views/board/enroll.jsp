@@ -29,10 +29,10 @@
 	        <input name="writer">
 	    </div>
 	    
-	    <button class="btn">등록</button>
+	    <button>등록</button>
 	    
 	</form>
-	
+	<button class="btn-pageback" onclick="history.back()">뒤로가기</button>
 </div>
 
 </body>
